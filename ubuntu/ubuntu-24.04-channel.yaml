@@ -1,0 +1,13 @@
+apiVersion: upgrade.cattle.io/v1
+kind: Channel
+metadata:
+  name: ubuntu-stable
+latest:
+  version: "2025-04"
+  upgrade:
+    image: ubuntu
+    command:
+      - /bin/sh
+      - -c
+      - |
+        chroot /host /bin/sh -c 'apt-get update -y'
