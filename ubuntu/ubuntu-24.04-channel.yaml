@@ -10,4 +10,4 @@ latest:
       - /bin/sh
       - -c
       - |
-        chroot /host /bin/sh -c 'apt-get update -y'
+        chroot /host /bin/sh -c 'apt-get update -y && apt-get upgrade -y'
