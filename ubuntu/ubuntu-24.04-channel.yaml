@@ -3,7 +3,7 @@ kind: Channel
 metadata:
   name: ubuntu-stable
 latest:
-  version: "2025-04-2"
+  version: "2025-04-3"
   upgrade:
     image: busybox:latest
     command:
