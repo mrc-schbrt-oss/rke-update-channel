@@ -5,7 +5,7 @@ metadata:
 latest:
   version: "2025-04"
   upgrade:
-    image: ubuntu
+    image: busybox:latest
     command:
       - /bin/sh
       - -c
