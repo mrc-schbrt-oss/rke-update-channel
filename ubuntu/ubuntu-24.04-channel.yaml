@@ -3,11 +3,11 @@ kind: Channel
 metadata:
   name: ubuntu-stable
 latest:
-  version: "2025-04-5"
-  upgrade:
-    image: busybox:latest
-    command:
-      - /bin/sh
-      - -c
-      - |
-        chroot /host /bin/sh -c 'apt-get update -y && apt-get upgrade -y && reboot'
+  version: "2025-04-12"
+  #upgrade:
+  #  image: busybox:latest
+  #  command:
+  #    - /bin/sh
+  #    - -c
+  #    - |
+  #      chroot /host /bin/sh -c 'apt-get update -y && apt-get upgrade -y && reboot'
