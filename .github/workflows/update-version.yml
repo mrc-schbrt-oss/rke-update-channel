@@ -33,5 +33,5 @@ jobs:
         run: |
           git add ubuntu/ubuntu-24.04-channel.json
           git commit -m "Update version to $LATEST_VERSION" || echo "No changes to commit"
-          git push https://x-access-token:${TOKEN}@github.com/${{ github.repository }} HEAD:${{ github.ref_name }}
-
+          #git push https://x-access-token:${TOKEN}@github.com/${{ github.repository }} HEAD:${{ github.ref_name }}
+          git push https://x-access-token:${TOKEN}@github.com/${{ github.repository }} main
