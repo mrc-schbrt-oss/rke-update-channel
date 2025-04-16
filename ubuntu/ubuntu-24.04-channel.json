@@ -1,3 +1,11 @@
 {
-  "version": "2025-04-18"
+  "version": "2025-04-18",
+  "upgrade": {
+    "image": "busybox:latest",
+    "command": [
+      "/bin/sh",
+      "-c",
+      "chroot /host /bin/sh -c 'apt-get update -y && apt-get upgrade -y && [ -f /var/run/reboot-required ] && reboot || echo \"NR!\"'"
+    ]
+  }
 }
