@@ -2,12 +2,8 @@ name: Update Channel Version
 
 on:
   schedule:
-    - cron: '0 11 * * 6' # Every Saturday at 11:00 AM
+    - cron: '0 11 * * 6'  # Every Saturday at 11:00 AM
   workflow_dispatch:
-
-env:
-  FILE_PATH: ubuntu/ubuntu-24.04-channel.json
-  LATEST_VERSION: ${{ github.event.inputs.version || format('{0}', github.event.repository.updated_at | from_json | strftime('%Y-%m-%d')) }}
 
 jobs:
   update-version:
@@ -17,9 +13,14 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v4
 
-      - name: Update version field
+      - name: Set version environment variable
+        id: set-version
+        run: echo "LATEST_VERSION=$(date +'%Y-%m-%d')" >> "$GITHUB_ENV"
+
+      - name: Update version in JSON
         run: |
-          jq '.version = "${{ env.LATEST_VERSION }}"' $FILE_PATH > tmp.json && mv tmp.json $FILE_PATH
+          jq '.version = env.LATEST_VERSION' ubuntu/ubuntu-24.04-channel.json > tmp.json
+          mv tmp.json ubuntu/ubuntu-24.04-channel.json
 
       - name: Set up Git
         run: |
@@ -30,7 +31,7 @@ jobs:
         env:
           TOKEN: ${{ secrets.GH_PAT }}
         run: |
-          git add $FILE_PATH
-          git commit -m "Update version to ${{ env.LATEST_VERSION }}" || echo "No changes to commit"
+          git add ubuntu/ubuntu-24.04-channel.json
+          git commit -m "Update version to $LATEST_VERSION" || echo "No changes to commit"
           git push https://x-access-token:${TOKEN}@github.com/${{ github.repository }} HEAD:${{ github.ref_name }}
 
