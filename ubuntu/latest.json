@@ -1,8 +1,5 @@
 {
-  "latestVersion": "2025-04-40",
-  "versions": [
-    {
-      "version": "2025-04-40"
-    }
-  ]
+  "id": "ubuntu",
+  "type": "json",
+  "version": "2025-04-70"
 }
